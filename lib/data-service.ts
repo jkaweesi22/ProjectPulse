@@ -36,26 +36,29 @@ class LocalPortfolioDataSource implements PortfolioDataSource {
   }
 
   async getKpis(): Promise<PortfolioKpis> {
-    const projects = this.snapshot.projects;
-    const active = projects.filter((p) => p.status !== 'completed');
-
-    const sumCoverage = active.reduce((acc, p) => acc + p.qaCoveragePercent, 0);
-    const averageQaCoverage =
-      active.length === 0 ? 0 : Math.round((sumCoverage / active.length) * 10) / 10;
-
-    const openBlockers = projects.reduce((acc, p) => acc + p.blockers.length, 0);
-
-    return {
-      totalActiveProjects: active.length,
-      onTrack: projects.filter((p) => p.status === 'on_track').length,
-      atRisk: projects.filter((p) => p.status === 'at_risk').length,
-      delayed: projects.filter((p) => p.status === 'delayed').length,
-      completed: projects.filter((p) => p.status === 'completed').length,
-      releaseReady: projects.filter((p) => p.status === 'release_ready').length,
-      openBlockers,
-      averageQaCoverage,
-    };
+    return computeKpis(this.snapshot.projects);
   }
+}
+
+export function computeKpis(projects: Project[]): PortfolioKpis {
+  const active = projects.filter((p) => p.status !== 'completed');
+
+  const sumCoverage = active.reduce((acc, p) => acc + p.qaCoveragePercent, 0);
+  const averageQaCoverage =
+    active.length === 0 ? 0 : Math.round((sumCoverage / active.length) * 10) / 10;
+
+  const openBlockers = projects.reduce((acc, p) => acc + p.blockers.length, 0);
+
+  return {
+    totalActiveProjects: active.length,
+    onTrack: projects.filter((p) => p.status === 'on_track').length,
+    atRisk: projects.filter((p) => p.status === 'at_risk').length,
+    delayed: projects.filter((p) => p.status === 'delayed').length,
+    completed: projects.filter((p) => p.status === 'completed').length,
+    releaseReady: projects.filter((p) => p.status === 'release_ready').length,
+    openBlockers,
+    averageQaCoverage,
+  };
 }
 
 let dataSource: PortfolioDataSource = new LocalPortfolioDataSource();

@@ -1,0 +1,21 @@
+{
+  "repos": [
+    {
+      "repo": "jkaweesi22/ProjectPulse",
+      "team": "Product",
+      "priority": "P2",
+      "qaCoveragePercent": 0
+    }
+  ],
+  "labels": {
+    "blocker": "blocker",
+    "blockerCritical": "blocker:critical",
+    "blockerMinor": "blocker:minor",
+    "risk": "risk",
+    "riskHigh": "risk:high",
+    "riskCritical": "risk:critical",
+    "qaNote": "qa-note"
+  },
+  "qaWorkflow": null,
+  "historyUrl": null
+}
