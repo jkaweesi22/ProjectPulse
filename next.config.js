@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 // Must match the GitHub repository name (and `BASE_PATH` in `lib/paths.ts`).
-const repo = 'project-pulse';
+const repo = 'ProjectPulse';
 
 const nextConfig = {
   output: 'export',
