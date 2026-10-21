@@ -13,9 +13,9 @@ export function ChartCard({
   className?: string;
 }) {
   return (
-    <Card className={cn('flex flex-col', className)} padding="sm">
+    <Card className={cn('flex h-full flex-col', className)} padding="sm">
       <CardHeader title={title} description={description} />
-      <div className="min-h-[260px] flex-1">{children}</div>
+      <div className="min-h-0 w-full flex-1">{children}</div>
     </Card>
   );
 }
