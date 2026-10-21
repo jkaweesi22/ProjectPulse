@@ -17,7 +17,7 @@ import type { BlockerTrendPoint } from '@/types';
 
 function formatWeek(w: string) {
   const d = new Date(w);
-  return d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
 }
 
 export function BlockerTrendsChart({ data }: { data: BlockerTrendPoint[] }) {
